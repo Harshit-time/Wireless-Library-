@@ -3,15 +3,14 @@ import { Text, View, TouchableOpacity, TextInput, Image, StyleSheet } from 'reac
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-
 export default class TransactionScreen extends React.Component {
     constructor(){
       super();
       this.state = {
         hasCameraPermissions: null,
         scanned: false,
-        scannedBookId: 'AAB156VCC',
-        scannedStudentId:'AADCFRFR12',
+        scannedBookId: '',
+        scannedStudentId:'',
         buttonState: 'normal'
       }
     }
@@ -20,9 +19,7 @@ export default class TransactionScreen extends React.Component {
       const {status} = await Permissions.askAsync(Permissions.CAMERA);
       
       this.setState({
-        /*status === "granted" is true when user has granted permission
-          status === "granted" is false when user has not granted the permission
-        */
+       
         hasCameraPermissions: status === "granted",
         buttonState: id,
         scanned: false
